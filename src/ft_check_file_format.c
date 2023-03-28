@@ -6,7 +6,7 @@
 /*   By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 15:48:55 by russelenc         #+#    #+#             */
-/*   Updated: 2023/03/28 14:28:37 by russelenc        ###   ########.fr       */
+/*   Updated: 2023/03/28 14:34:05 by russelenc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,10 @@ void check_format(char *map)
 		if(map[i] == '.')
 		{
 			format = ft_extract(map);
-			if(ft_strlen(format) < 4)
+			if(ft_strlen(format) < 4 || ft_strlen(format) > 4)
 			{
 				free(format);
-				printf("Error\nfile is not valid");
+				printf("Error\nfile is not valid\n");
 				exit (1);
 			}
 			if (ft_formatcmp(format, ".ber"))
@@ -90,6 +90,6 @@ void check_format(char *map)
 		}
 	}
 	free(format);
-	printf("Error\nfile is not valid");
+	printf("Error\nfile is not valid\n");
 	exit (1);
 }

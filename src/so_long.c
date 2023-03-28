@@ -6,7 +6,7 @@
 /*   By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:25:50 by russelenc         #+#    #+#             */
-/*   Updated: 2023/03/28 14:29:11 by russelenc        ###   ########.fr       */
+/*   Updated: 2023/03/28 14:49:42 by russelenc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,7 @@ int main(int ac, char **av)
 	init_struct(&player, av[1], &vars);
 	map_checker(&vars, &player);
 	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx, \
-				1000, 1000, "So-Long");
-/* 	vars.img = mlx_xpm_file_to_image(vars.mlx, img, &img_w, &img_h);
-	mlx_put_image_to_window(vars.mlx, vars.win, vars.img, 0, 0); */
+	vars.win = mlx_new_window(vars.mlx,vars.win_w * 32, vars.win_h * 32, "so_long");
 	gen_win(vars.map, &vars);
 	mlx_loop(vars.mlx);
 	while(i < len)

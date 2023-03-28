@@ -6,7 +6,7 @@
 /*   By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 18:11:09 by russelenc         #+#    #+#             */
-/*   Updated: 2023/03/28 12:15:10 by russelenc        ###   ########.fr       */
+/*   Updated: 2023/03/28 14:59:25 by russelenc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,16 @@ void	render_image(t_vars ***vars,int x, int y, char*img)
 void put_image(char c, int x, int y, t_vars **vars)
 {
 	if(c == '1')
-	{
-		render_image(&vars, x, y , "./wall.xpm"); 
-	}
+		render_image(&vars, x, y , "./texture/wall.xpm"); 
+	if(c == 'P')
+		render_image(&vars, x, y , "./texture/player.xpm"); 
+	if(c == 'C')
+		render_image(&vars, x, y , "./texture/collectible.xpm");
+	if(c == 'E')
+		render_image(&vars, x, y , "./texture/exit.xpm");
+	if(c == '0')
+		render_image(&vars, x, y , "./texture/empty.xpm");
+
 }
 
 void gen_win(char **map,t_vars *vars)
