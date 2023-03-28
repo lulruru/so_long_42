@@ -6,19 +6,19 @@
 /*   By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:25:40 by russelenc         #+#    #+#             */
-/*   Updated: 2023/03/28 13:25:18 by russelenc        ###   ########.fr       */
+/*   Updated: 2023/03/28 13:54:08 by russelenc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	nmbr_line(void)
+int	nmbr_line(char *fmap)
 {
 	int		fd;
 	int		i;
 	char	*tmp;
 
-	fd = open("map.ber", O_RDONLY);
+	fd = open(fmap, O_RDONLY);
 	i = 0;
 	tmp = get_next_line(fd);
 	while (tmp)
@@ -40,7 +40,7 @@ static void ft_trim(char *map)
 		map[len - 1] = '\0';
 }
 
-char	**gen_map(int len, s_map *map)
+char	**gen_map(int len, t_vars *map, char *fmap)
 {
 	int		fd;
 	int		i;
@@ -49,7 +49,7 @@ char	**gen_map(int len, s_map *map)
 	map->map = malloc(sizeof(*map) * len + 1);
 	if (!map->map)
 		return (NULL);
-	fd = open("map.ber", O_RDONLY);
+	fd = open(fmap, O_RDONLY);
 	i = 0;
 	while (i < len)
 	{

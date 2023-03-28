@@ -6,7 +6,7 @@
 /*   By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:27:01 by russelenc         #+#    #+#             */
-/*   Updated: 2023/03/26 17:07:13 by russelenc        ###   ########.fr       */
+/*   Updated: 2023/03/28 14:10:25 by russelenc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void ft_error_map(char *err)
 Fonction qui permet de checker si 
 la carte est un rectangle
  */
-void	check_rectangle(char **map)
+void	check_rectangle(t_vars *vars)
 {
 	int	col;
 	int	line;
@@ -36,18 +36,18 @@ void	check_rectangle(char **map)
 
 	i = 0;
 	y = 0;
-	line = nmbr_line();
+	line = nmbr_line(vars->map_file);
 	while (i < line)
 	{
 		y = i + 1;
 		if(y == line)
 			break ;
-		if(!check_line(map[line-1]) || !check_line(map[0]))
+		if(!check_line(vars->map[line-1]) || !check_line(vars->map[0]))
 			ft_error_map( "Error : \nLa carte est mal ferme");
-		col = ft_strlen(map[i]);
-		if (col != ft_strlen(map[y]))
+		col = ft_strlen(vars->map[i]);
+		if (col != ft_strlen(vars->map[y]))
 			ft_error_map( "ERROR :\nLa carte n'est pas un rectangle");
-		if (map[i][0] != 49 || map[i][col - 1] != 49)
+		if (vars->map[i][0] != 49 || vars->map[i][col - 1] != 49)
 			ft_error_map( "ERROR :\nLa carte n'est pas entoure de mur");
 		i++;
 	}
@@ -57,12 +57,12 @@ void	check_rectangle(char **map)
 Fonction qui permet de checker si 
 la carte est un rectangle
  */
-void check_all_data(s_map *map,s_player *player, char **map_tab)
+void check_all_data(t_vars *map,s_player *player)
 {
 	int	i;
 
 	i = 0;
-	init_all_data(map,player, map_tab);
+	init_all_data(map,player);
 	if(map->collec >= 1)
 		i++;
 	else if (map->collec < 1)
@@ -78,8 +78,8 @@ void check_all_data(s_map *map,s_player *player, char **map_tab)
 		
 }
 
-void	map_checker(s_map *map,s_player *player, char **map_tab)
+void	map_checker(t_vars *map,s_player *player)
 {
-	check_rectangle(map_tab);
-	check_all_data(map,player, map_tab);
+	check_rectangle(map);
+	check_all_data(map,player);
 } 

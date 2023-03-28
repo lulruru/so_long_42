@@ -6,7 +6,7 @@
 /*   By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:22:24 by russelenc         #+#    #+#             */
-/*   Updated: 2023/03/28 13:27:53 by russelenc        ###   ########.fr       */
+/*   Updated: 2023/03/28 14:31:17 by russelenc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,13 @@ typedef struct s_vars {
 	int				win_h;
 	int				x_p;
 	int				y_p;
+	char			*map_file;
 	int				movement;
 	char			**map;
-	int				collect;
+	int				exit;
+	int				collec;
 }	t_vars;
 
-typedef struct s_map{
-	int collec;
-	int exit;
-	char **map;
-	char *map_file;
-} s_map;
 
 /* 			GET_NEXT_LINE		 */
 int	ft_strlen(char *str);
@@ -63,15 +59,17 @@ int		test(char *s);
 
 /* 				MAP_UTILS		*/
 int		check_line(char *str);
-void		check_rectangle(char **map);
-char    **gen_map(int len, s_map *map);
-int		nmbr_line(void);
-void		check_all_data(s_map *map,s_player *player, char **map_tab);
-void	init_all_data(s_map *map,s_player *player, char **map_tab);
+void    check_rectangle(t_vars *vars);
+char	**gen_map(int len, t_vars *map, char *fmap);
+int		nmbr_line(char *fmap);
+void	check_all_data(t_vars *map,s_player *player);
+void	init_all_data(t_vars *map,s_player *player);
 void	ft_error_map(char *err);
-void	map_checker(s_map *map,s_player *player, char **map_tab);
-void check_format(char *map_file);
-void gen_win(char **map,t_vars *vars);
+void	map_checker(t_vars *map,s_player *player);
+void	check_format(char *map_file);
+
+/* 				MLX_UTILS		*/
+void	gen_win(char **map,t_vars *vars);
 
 
 # endif

@@ -6,7 +6,7 @@
 /*   By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:27:15 by russelenc         #+#    #+#             */
-/*   Updated: 2023/03/26 17:07:55 by russelenc        ###   ########.fr       */
+/*   Updated: 2023/03/28 14:11:06 by russelenc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,23 @@ void check_all_character(char *map)
 	}
 }
 
-void init_all_data(s_map *map,s_player *player, char **map_tab)
+void init_all_data(t_vars *vars,s_player *player)
 {
 	int i;
 	int y;
 	
 	i = 0;
-	while(i < nmbr_line())
+	while(i < nmbr_line(vars->map_file))
 	{
 		y = 0;
-		while (map_tab[i][y])
+		while (vars->map[i][y])
 		{
-			check_all_character(map_tab[i]);
-			if(map_tab[i][y] == 67)
-				map->collec += 1;
-			if(map_tab[i][y] == 69)
-				map->exit += 1;
-			if(map_tab[i][y] == 80)
+			check_all_character(vars->map[i]);
+			if(vars->map[i][y] == 67)
+				vars->collec += 1;
+			if(vars->map[i][y] == 69)
+				vars->exit += 1;
+			if(vars->map[i][y] == 80)
 			{
 				player->x += i;
 				player->y += y;
