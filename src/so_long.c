@@ -6,7 +6,7 @@
 /*   By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:25:50 by russelenc         #+#    #+#             */
-/*   Updated: 2023/03/28 14:49:42 by russelenc        ###   ########.fr       */
+/*   Updated: 2023/03/28 16:54:12 by russelenc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,13 @@ void init_struct(s_player *player, char *map_file, t_vars	*vars)
 	vars->win_h = nmbr_line(map_file);
 }
 
+int	ft_close(int keycode, t_vars *vars)
+{
+	mlx_destroy_window(vars->mlx, vars->win);
+	exit(1);
+	return (0);
+}
+
 int main(int ac, char **av)
 {
 	int len;
@@ -48,6 +55,8 @@ int main(int ac, char **av)
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx,vars.win_w * 32, vars.win_h * 32, "so_long");
 	gen_win(vars.map, &vars);
+	mlx_hook(vars.win, 2, (1L << 0), ft_key_hook, &vars);
+	mlx_hook(vars.win, 17, (1L << 0), ft_close, &vars);
 	mlx_loop(vars.mlx);
 	while(i < len)
 	{

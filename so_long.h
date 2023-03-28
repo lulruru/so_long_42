@@ -6,7 +6,7 @@
 /*   By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:22:24 by russelenc         #+#    #+#             */
-/*   Updated: 2023/03/28 14:31:17 by russelenc        ###   ########.fr       */
+/*   Updated: 2023/03/28 16:44:53 by russelenc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,9 @@ void	check_format(char *map_file);
 
 /* 				MLX_UTILS		*/
 void	gen_win(char **map,t_vars *vars);
+
+/* 				KEY_HOOK		 */
+int ft_key_hook(int keycode, t_vars *vars);
 
 
 # endif
