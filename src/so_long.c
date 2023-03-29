@@ -6,7 +6,7 @@
 /*   By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:25:50 by russelenc         #+#    #+#             */
-/*   Updated: 2023/03/28 16:54:12 by russelenc        ###   ########.fr       */
+/*   Updated: 2023/03/29 14:21:36 by russelenc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,15 @@ void init_struct(s_player *player, char *map_file, t_vars	*vars)
 
 int	ft_close(int keycode, t_vars *vars)
 {
+	int	i;
+
+	i = 0;
+	while(vars->map[i])
+	{
+		free(vars->map[i]);
+		i++;
+	}
+	free(vars->map);
 	mlx_destroy_window(vars->mlx, vars->win);
 	exit(1);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 18:11:09 by russelenc         #+#    #+#             */
-/*   Updated: 2023/03/28 14:59:25 by russelenc        ###   ########.fr       */
+/*   Updated: 2023/03/28 17:46:41 by russelenc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ void put_image(char c, int x, int y, t_vars **vars)
 	if(c == '1')
 		render_image(&vars, x, y , "./texture/wall.xpm"); 
 	if(c == 'P')
+	{
 		render_image(&vars, x, y , "./texture/player.xpm"); 
+	}
 	if(c == 'C')
 		render_image(&vars, x, y , "./texture/collectible.xpm");
 	if(c == 'E')
