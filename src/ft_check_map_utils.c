@@ -6,7 +6,7 @@
 /*   By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:27:15 by russelenc         #+#    #+#             */
-/*   Updated: 2023/03/28 14:11:06 by russelenc        ###   ########.fr       */
+/*   Updated: 2023/03/30 16:29:31 by russelenc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int check_line(char *str)
 	return (1);
 }
 
-void check_all_character(char *map)
+void check_all_character(char *map, t_vars **vars)
 {
 	int	i;
 
@@ -39,12 +39,12 @@ void check_all_character(char *map)
 	while(map[i])
 	{
 		if(map[i] != '1' && map[i] != '0' && map[i] != 'C' && map[i] != 'E' && map[i] != 'P')
-			ft_error_map("Error \nunknown characetr in map");
+			ft_error_map(&vars, "Error \nunknown character in map");
 		i++;
 	}
 }
 
-void init_all_data(t_vars *vars,s_player *player)
+void init_all_data(t_vars *vars)
 {
 	int i;
 	int y;
@@ -55,16 +55,14 @@ void init_all_data(t_vars *vars,s_player *player)
 		y = 0;
 		while (vars->map[i][y])
 		{
-			check_all_character(vars->map[i]);
+			check_all_character(vars->map[i], &vars);
 			if(vars->map[i][y] == 67)
 				vars->collec += 1;
 			if(vars->map[i][y] == 69)
 				vars->exit += 1;
 			if(vars->map[i][y] == 80)
 			{
-				player->x += i;
-				player->y += y;
-				player->p += 1;
+				vars->p += 1;
 			}
 			y++;
 		}

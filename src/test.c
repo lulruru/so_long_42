@@ -6,7 +6,7 @@
 /*   By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 18:11:09 by russelenc         #+#    #+#             */
-/*   Updated: 2023/03/28 17:46:41 by russelenc        ###   ########.fr       */
+/*   Updated: 2023/03/29 20:30:08 by russelenc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,18 @@ void	render_image(t_vars ***vars,int x, int y, char*img)
 	(**vars)->img = mlx_xpm_file_to_image((**vars)->mlx, img, &img_w, &img_h);
 	mlx_put_image_to_window((**vars)->mlx, (**vars)->win, (**vars)->img, x, y);
 }
+
 void put_image(char c, int x, int y, t_vars **vars)
 {
 	if(c == '1')
 		render_image(&vars, x, y , "./texture/wall.xpm"); 
 	if(c == 'P')
 	{
+		(*vars)->x_p = x;
+		(*vars)->y_p = y;
 		render_image(&vars, x, y , "./texture/player.xpm"); 
+		printf(" x  = %d\n", (*vars)->x_p);
+		printf(" y  = %d\n", (*vars)->y_p);
 	}
 	if(c == 'C')
 		render_image(&vars, x, y , "./texture/collectible.xpm");
@@ -41,7 +46,7 @@ void put_image(char c, int x, int y, t_vars **vars)
 
 }
 
-void gen_win(char **map,t_vars *vars)
+void gen_win(t_vars *vars)
 {
 	int back;
 	int x_map;
@@ -58,7 +63,7 @@ void gen_win(char **map,t_vars *vars)
 		x_map = 0;
 		while(0 < vars->win_w)
 		{
-			put_image(map[y_map][x_map],x, y,&vars );	
+			put_image(vars->map[y_map][x_map],x, y,&vars );	
 			x += 32;
 			vars->win_w--;
 			x_map++;

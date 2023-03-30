@@ -6,7 +6,7 @@
 /*   By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:22:24 by russelenc         #+#    #+#             */
-/*   Updated: 2023/03/28 16:44:53 by russelenc        ###   ########.fr       */
+/*   Updated: 2023/03/30 17:03:55 by russelenc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,19 @@ typedef struct s_player{
 } s_player;
 
 typedef struct s_vars {
-	void			*mlx;
-	void			*img;
-	void			*win;
-	int				win_w;
-	int				win_h;
-	int				x_p;
-	int				y_p;
-	char			*map_file;
-	int				movement;
-	char			**map;
-	int				exit;
-	int				collec;
+	void	*mlx;
+	void	*img;
+	void	*win;
+	int		win_w;
+	int		win_h;
+	int		x_p;
+	int		y_p;
+	char	*map_file;
+	int		move;
+	char	**map;
+	int		exit;
+	int		collec;
+	int		p;
 }	t_vars;
 
 
@@ -59,20 +60,25 @@ int		test(char *s);
 
 /* 				MAP_UTILS		*/
 int		check_line(char *str);
-void    check_rectangle(t_vars *vars);
+void    check_rectangle(t_vars **vars);
 char	**gen_map(int len, t_vars *map, char *fmap);
 int		nmbr_line(char *fmap);
-void	check_all_data(t_vars *map,s_player *player);
-void	init_all_data(t_vars *map,s_player *player);
-void	ft_error_map(char *err);
-void	map_checker(t_vars *map,s_player *player);
+void	check_all_data(t_vars **map);
+void	init_all_data(t_vars *vars);
+void	ft_error_map(t_vars ***vars, char *err);
+void	map_checker(t_vars *map);
 void	check_format(char *map_file);
 
 /* 				MLX_UTILS		*/
-void	gen_win(char **map,t_vars *vars);
+void	gen_win(t_vars *vars);
 
 /* 				KEY_HOOK		 */
 int ft_key_hook(int keycode, t_vars *vars);
-
+void	go_right(t_vars **v);
+void	go_left(t_vars **v);
+void	go_up(t_vars **v);
+void	go_down(t_vars **v);
+int	ft_exit(t_vars ***vars);
+void print_move(t_vars ***v);
 
 # endif
