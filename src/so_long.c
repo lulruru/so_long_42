@@ -6,7 +6,7 @@
 /*   By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:25:50 by russelenc         #+#    #+#             */
-/*   Updated: 2023/03/30 17:03:43 by russelenc        ###   ########.fr       */
+/*   Updated: 2023/03/31 13:00:39 by russelenc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /* 
 Fonction d'initalisation de la structure
  */
-void init_struct(s_player *player, char *map_file, t_vars	*vars)
+void init_struct(char *map_file, t_vars	*vars)
 {
 	vars->exit = 0;
 	vars->collec = 0;
@@ -25,7 +25,7 @@ void init_struct(s_player *player, char *map_file, t_vars	*vars)
 	vars->p = 0;
 	vars->map_file = map_file;
 	vars->collec = 0;
-	vars->movement = 0;
+	vars->move = 0;
 	vars->win_w = ft_strlen(vars->map[0]);
 	vars->win_h = nmbr_line(map_file);
 }
@@ -48,7 +48,7 @@ int	ft_exit(t_vars ***vars)
 void print_move(t_vars ***v)
 {
 	(**v)->move++;
-	printf("%d",(**v)->move);
+	printf(" Move : %d\n",(**v)->move);
 }
 int	ft_close(t_vars *vars)
 {
@@ -69,7 +69,6 @@ int	ft_close(t_vars *vars)
 int main(int ac, char **av)
 {
 	int len;
-	s_player player;
 	t_vars	vars;
 	
 	if(ac < 2)
@@ -77,13 +76,14 @@ int main(int ac, char **av)
 	check_format(av[1]);
 	len = nmbr_line(av[1]);
 	vars.map = gen_map(len, &vars, av[1]);
-	init_struct(&player, av[1], &vars);
+	init_struct(av[1], &vars);
 	map_checker(&vars);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx,vars.win_w * 32, vars.win_h * 32, "so_long");
 	gen_win(&vars);
 	mlx_hook(vars.win, 2, (1L << 0), ft_key_hook, &vars);
 	mlx_hook(vars.win, 17, (1L << 0), ft_close, &vars);
+	mlx_loop_hook(vars.mlx, anime, &vars);
 	mlx_loop(vars.mlx);
 	return(0);
 }

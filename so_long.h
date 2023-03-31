@@ -6,7 +6,7 @@
 /*   By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:22:24 by russelenc         #+#    #+#             */
-/*   Updated: 2023/03/30 17:03:55 by russelenc        ###   ########.fr       */
+/*   Updated: 2023/03/30 17:58:23 by russelenc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void	check_format(char *map_file);
 
 /* 				MLX_UTILS		*/
 void	gen_win(t_vars *vars);
+int		ft_exit(t_vars ***vars);
 
 /* 				KEY_HOOK		 */
 int ft_key_hook(int keycode, t_vars *vars);
@@ -78,7 +79,7 @@ void	go_right(t_vars **v);
 void	go_left(t_vars **v);
 void	go_up(t_vars **v);
 void	go_down(t_vars **v);
-int	ft_exit(t_vars ***vars);
-void print_move(t_vars ***v);
+void	print_move(t_vars ***v);
+int 	anime(t_vars *v);
 
 # endif
