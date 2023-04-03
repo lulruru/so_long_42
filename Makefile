@@ -6,7 +6,7 @@
 #    By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/26 16:51:26 by russelenc         #+#    #+#              #
-#    Updated: 2023/03/30 17:59:58 by russelenc        ###   ########.fr        #
+#    Updated: 2023/04/02 17:46:17 by russelenc        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,9 +26,9 @@ SRC_DIR = src
 
  #src
 
-SRC = test.c so_long.c ft_check_file_format.c ft_check_map.c ft_check_map_utils.c \
+SRC = ft_put_image.c so_long.c ft_check_file_format.c ft_check_map.c ft_check_map_utils.c \
 		ft_get_map.c get_next_line.c get_next_line_utils.c ft_hook_key.c \
-		ft_moov.c ft_utils.c
+		ft_moov.c ft_check_path.c
 
 
 

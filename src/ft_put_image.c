@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test.c                                             :+:      :+:    :+:   */
+/*   ft_put_image.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 18:11:09 by russelenc         #+#    #+#             */
-/*   Updated: 2023/03/31 12:58:08 by russelenc        ###   ########.fr       */
+/*   Updated: 2023/03/31 17:40:19 by russelenc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,40 @@ void gen_win(t_vars *vars)
 	} 
 	
     // The following code goes here.
+}
+
+int	anime(t_vars *v)
+{
+	int	img_w;
+	int	img_h;
+	int x_c;
+	int	y_c;
+	int	i;
+	int y;
+	int len;
+
+	x_c = 0;
+	i = -1;
+	y_c = 0;
+	len = nmbr_line(v->map_file);
+	
+	v->img = mlx_xpm_file_to_image(v->mlx, "./texture/coffre.xpm", &img_w, &img_h);
+	while(++i < len)
+	{
+		y = -1;
+		while(v->map[i][++y])
+		{
+			if(v->map[i][y] == 'E')
+			{
+				x_c = y * 32;
+				y_c = i * 32;
+				if(v->collec <= 0)
+				{
+					mlx_put_image_to_window(v->mlx, v->win, v->img, x_c, y_c);
+				}
+				break ;
+			}
+		}
+	}
+	return(0);
 }

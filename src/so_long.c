@@ -6,7 +6,7 @@
 /*   By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:25:50 by russelenc         #+#    #+#             */
-/*   Updated: 2023/03/31 13:00:39 by russelenc        ###   ########.fr       */
+/*   Updated: 2023/04/03 11:08:34 by russelenc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int main(int ac, char **av)
 	vars.map = gen_map(len, &vars, av[1]);
 	init_struct(av[1], &vars);
 	map_checker(&vars);
+	ft_floodfill(&vars);
 	vars.mlx = mlx_init();
 	vars.win = mlx_new_window(vars.mlx,vars.win_w * 32, vars.win_h * 32, "so_long");
 	gen_win(&vars);

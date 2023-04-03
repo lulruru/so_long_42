@@ -6,7 +6,7 @@
 /*   By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:22:24 by russelenc         #+#    #+#             */
-/*   Updated: 2023/03/30 17:58:23 by russelenc        ###   ########.fr       */
+/*   Updated: 2023/04/02 18:07:30 by russelenc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_vars {
 	int		exit;
 	int		collec;
 	int		p;
+	
 }	t_vars;
 
 
@@ -68,6 +69,7 @@ void	init_all_data(t_vars *vars);
 void	ft_error_map(t_vars ***vars, char *err);
 void	map_checker(t_vars *map);
 void	check_format(char *map_file);
+void	ft_floodfill(t_vars *v);
 
 /* 				MLX_UTILS		*/
 void	gen_win(t_vars *vars);
