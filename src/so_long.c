@@ -6,7 +6,7 @@
 /*   By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:25:50 by russelenc         #+#    #+#             */
-/*   Updated: 2023/04/03 11:08:34 by russelenc        ###   ########.fr       */
+/*   Updated: 2023/05/04 11:47:14 by russelenc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void init_struct(char *map_file, t_vars	*vars)
 	vars->collec = 0;
 	vars->move = 0;
 	vars->win_w = ft_strlen(vars->map[0]);
-	vars->win_h = nmbr_line(map_file);
+	vars->win_h = nmbr_line(vars->map);
 }
 int	ft_exit(t_vars ***vars)
 {
@@ -74,17 +74,18 @@ int main(int ac, char **av)
 	if(ac < 2)
 		return(0);
 	check_format(av[1]);
-	len = nmbr_line(av[1]);
-	vars.map = gen_map(len, &vars, av[1]);
-	init_struct(av[1], &vars);
-	map_checker(&vars);
-	ft_floodfill(&vars);
-	vars.mlx = mlx_init();
-	vars.win = mlx_new_window(vars.mlx,vars.win_w * 32, vars.win_h * 32, "so_long");
-	gen_win(&vars);
-	mlx_hook(vars.win, 2, (1L << 0), ft_key_hook, &vars);
-	mlx_hook(vars.win, 17, (1L << 0), ft_close, &vars);
-	mlx_loop_hook(vars.mlx, anime, &vars);
-	mlx_loop(vars.mlx);
+	vars.map = gen_map(av[1]);
+	// if(!vars.map)
+	// {
+		init_struct(av[1], &vars);
+		map_checker(&vars);
+		vars.mlx = mlx_init();
+		vars.win = mlx_new_window(vars.mlx,vars.win_w * 32, vars.win_h * 32, "so_long");
+		gen_win(&vars);
+		mlx_hook(vars.win, 2, (1L << 0), ft_key_hook, &vars);
+		mlx_hook(vars.win, 17, (1L << 0), ft_close, &vars);
+		mlx_loop_hook(vars.mlx, anime, &vars);
+		mlx_loop(vars.mlx);
+
 	return(0);
 }

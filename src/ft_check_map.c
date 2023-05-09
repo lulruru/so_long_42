@@ -6,7 +6,7 @@
 /*   By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:27:01 by russelenc         #+#    #+#             */
-/*   Updated: 2023/03/30 16:30:54 by russelenc        ###   ########.fr       */
+/*   Updated: 2023/05/04 11:46:27 by russelenc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ void	check_rectangle(t_vars **vars)
 
 	i = 0;
 	y = 0;
-	line = nmbr_line((*vars)->map_file);
+	line = nmbr_line((*vars)->map);
 	while (i < line)
 	{
 		y = i + 1;
 		if(y == line)
 			break ;
 		if(!check_line((*vars)->map[line-1]) || !check_line((*vars)->map[0]))
-			ft_error_map(&vars, "Error : \nLa carte est mal ferme");
+			ft_error_map(&vars, "ERROR :\nLa carte est mal ferme");
 		col = ft_strlen((*vars)->map[i]);
 		if (col != ft_strlen((*vars)->map[y]))
 			ft_error_map(&vars, "ERROR :\nLa carte n'est pas un rectangle");
@@ -85,6 +85,9 @@ void check_all_data(t_vars **map)
 
 void	map_checker(t_vars *map)
 {
+	char **tmp;
 	check_rectangle(&map);
 	check_all_data(&map);
+	tmp = cpymap(&map, tmp);
+	ft_floodfill(map, tmp);
 } 

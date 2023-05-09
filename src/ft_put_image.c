@@ -6,7 +6,7 @@
 /*   By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 18:11:09 by russelenc         #+#    #+#             */
-/*   Updated: 2023/03/31 17:40:19 by russelenc        ###   ########.fr       */
+/*   Updated: 2023/05/04 11:44:36 by russelenc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	anime(t_vars *v)
 	x_c = 0;
 	i = -1;
 	y_c = 0;
-	len = nmbr_line(v->map_file);
+	len = nmbr_line(v->map);
 	
 	v->img = mlx_xpm_file_to_image(v->mlx, "./texture/coffre.xpm", &img_w, &img_h);
 	while(++i < len)

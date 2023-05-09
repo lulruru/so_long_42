@@ -6,7 +6,7 @@
 /*   By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/02 17:45:28 by russelenc         #+#    #+#             */
-/*   Updated: 2023/04/03 11:12:03 by russelenc        ###   ########.fr       */
+/*   Updated: 2023/04/10 20:30:58 by russelenc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,17 @@ void find_player_position(char **map, int *x_p, int *y_p)
 	}
 }
 
-void flood_fill(char **map, int row, int col)
+void flood_fill(char **map, int row, int col,t_vars **v)
 {
-	if (row < 0 || col < 0 || row >= 5|| col >= 14)
+	if (row < 0 || col < 0 || row >= (*v)->win_h|| col >= (*v)->win_w)
         return;
 	if(map[row][col] == '2' || map[row][col] == '1')
 		return ;
 	map[row][col] = '2';
-	flood_fill(map, row - 1, col);
-    flood_fill(map, row + 1, col);
-    flood_fill(map, row, col - 1);
-    flood_fill(map, row, col + 1);
+	flood_fill(map, row - 1, col, v);
+    flood_fill(map, row + 1, col, v);
+    flood_fill(map, row, col - 1, v);
+    flood_fill(map, row, col + 1, v);
 }
 void print_floodfill(char **map)
 {
@@ -73,24 +73,7 @@ int check_path(char **map)
 	}
 	return(1);	
 }
-char **cpymap(t_vars **v, char **map)
-{
-	int	i;
-	int	y;
 
-	i = 0;
-	y = 0;
-	map = malloc(sizeof(char *) * (*v)->win_h);
-	if(!map)
-		return (NULL);
-	while((*v)->map[i])
-	{
-		map[y] = (*v)->map[i];
-		i++;
-		y++;
-	}
-	return(map);
-}
 void	ft_freemap(char **tmp)
 {
 	int	i;
@@ -103,17 +86,15 @@ void	ft_freemap(char **tmp)
 	}
 	free(tmp);
 }
-void	ft_floodfill(t_vars *v)
+void	ft_floodfill(t_vars *v, char **tmp)
 {
 	int	x_p;
 	int	y_p;
-	char **tmp;
 
-	tmp = cpymap(&v, tmp);
 	x_p = 0;
 	y_p = 0;
 	find_player_position(tmp, &x_p,&y_p);
-	flood_fill(tmp,y_p, x_p);
+	flood_fill(tmp,y_p, x_p, &v);
 	if(!check_path(tmp))
 	{
 		printf("NO PATH");

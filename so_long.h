@@ -6,7 +6,7 @@
 /*   By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:22:24 by russelenc         #+#    #+#             */
-/*   Updated: 2023/04/02 18:07:30 by russelenc        ###   ########.fr       */
+/*   Updated: 2023/05/04 11:44:13 by russelenc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,14 @@ int		test(char *s);
 /* 				MAP_UTILS		*/
 int		check_line(char *str);
 void    check_rectangle(t_vars **vars);
-char	**gen_map(int len, t_vars *map, char *fmap);
-int		nmbr_line(char *fmap);
+char	**gen_map(char *fmap);
+int		nmbr_line(char **map);
 void	check_all_data(t_vars **map);
 void	init_all_data(t_vars *vars);
 void	ft_error_map(t_vars ***vars, char *err);
 void	map_checker(t_vars *map);
 void	check_format(char *map_file);
-void	ft_floodfill(t_vars *v);
+void	ft_floodfill(t_vars *v, char **map);
 
 /* 				MLX_UTILS		*/
 void	gen_win(t_vars *vars);
@@ -83,5 +83,11 @@ void	go_up(t_vars **v);
 void	go_down(t_vars **v);
 void	print_move(t_vars ***v);
 int 	anime(t_vars *v);
+char	**cpymap(t_vars **v, char **map);
+void	ft_putstr(char *str);
+char	**ft_split(const char *s, char c);
+// char	*ft_strjoin(char const *s1, char const *s2);
+
+char *ft_strdup(char *src);
 
 # endif

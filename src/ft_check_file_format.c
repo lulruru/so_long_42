@@ -6,7 +6,7 @@
 /*   By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/23 15:48:55 by russelenc         #+#    #+#             */
-/*   Updated: 2023/03/28 14:34:05 by russelenc        ###   ########.fr       */
+/*   Updated: 2023/04/11 22:20:54 by russelenc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void directory_check(char *map)
 	fd = open(map, O_DIRECTORY);
 	if(fd > 0)
 	{
-		printf("Error :\nmap is a directory\n");
+		ft_putstr("Error :\nmap is a directory\n");
 		exit(1);
 	}
 }
@@ -82,7 +82,7 @@ void check_format(char *map)
 			if(ft_strlen(format) < 4 || ft_strlen(format) > 4)
 			{
 				free(format);
-				printf("Error\nfile is not valid\n");
+				ft_putstr("Error\nfile is not valid\n");
 				exit (1);
 			}
 			if (ft_formatcmp(format, ".ber"))
@@ -90,6 +90,6 @@ void check_format(char *map)
 		}
 	}
 	free(format);
-	printf("Error\nfile is not valid\n");
+	ft_putstr("Error\nfile is not valid\n");
 	exit (1);
 }

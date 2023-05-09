@@ -6,7 +6,7 @@
 /*   By: russelenc <russelenc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 18:27:15 by russelenc         #+#    #+#             */
-/*   Updated: 2023/04/02 17:45:18 by russelenc        ###   ########.fr       */
+/*   Updated: 2023/05/04 11:45:34 by russelenc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void init_all_data(t_vars *vars)
 	int y;
 	
 	i = 0;
-	while(i < nmbr_line(vars->map_file))
+	while(i < nmbr_line(vars->map))
 	{
 		y = 0;
 		while (vars->map[i][y])
